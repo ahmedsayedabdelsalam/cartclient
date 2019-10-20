@@ -1,10 +1,7 @@
 <template>
-  <div>home</div>
+  <div>products for category</div>
 </template>
 
 <script>
 export default {};
 </script>
-
-<style>
-</style>
