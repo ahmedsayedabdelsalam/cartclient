@@ -18,7 +18,7 @@ export const actions = {
   async nuxtServerInit({
     commit
   }) {
-    let response = await this.$axios.$get('categories')
+    const response = await this.$axios.$get('categories')
     commit('SET_CATEGORIES', response.data)
   }
 }
