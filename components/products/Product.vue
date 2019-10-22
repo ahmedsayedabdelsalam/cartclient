@@ -16,7 +16,7 @@
       <div class="content">
         <p v-if="product.description">{{product.description}}</p>
       </div>
-      <span class="is-rounded tag is-medium">Product Price</span>
+      <span class="is-rounded tag is-medium">{{product.price}}</span>
     </div>
   </div>
 </template>
