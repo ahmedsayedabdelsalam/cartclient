@@ -13,7 +13,7 @@
 
             <hr />
 
-            <!-- <span class="tag is-rounded is-medium is-dark mr-4">Out of stock</span> -->
+            <span v-if="!product.in_stock" class="tag is-rounded is-medium is-dark mr-4">Out of stock</span>
 
             <span class="tag is-rounded is-medium">{{product.price}}</span>
           </section>
@@ -29,8 +29,8 @@
               <div class="field has-addons" v-if="form.variation">
                 <div class="control">
                   <div class="select is-fullwidth">
-                    <select name id>
-                      <option value>1</option>
+                    <select v-model="form.quantity">
+                      <option v-for="x in parseInt(form.variation.stock_count)" :key="x" :value="x">{{x}}</option>
                     </select>
                   </div>
                 </div>
@@ -58,9 +58,14 @@ export default {
       product: null,
       form: {
         variation: "",
-        quantitiy: 1
+        quantity: 1
       }
     };
+  },
+  watch: {
+    'form.variation' () {
+      this.form.quantity = 1
+    }
   },
   async asyncData({ params, app }) {
     const response = await app.$axios.$get(`products/${params.slug}`);
