@@ -50,10 +50,29 @@ export default {
   modules: [
     // Doc: https://github.com/nuxt-community/modules/tree/master/packages/bulma
     '@nuxtjs/bulma',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   axios: {
     baseURL: "http://cart.test/api"
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: 'meta.token'
+          },
+          user: {
+            url: '/auth/me',
+            method: 'get',
+            propertyName: 'data'
+          }
+        }
+      }
+    }
   },
   /*
    ** Build configuration

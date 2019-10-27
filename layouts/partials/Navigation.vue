@@ -28,14 +28,23 @@
               class="navbar-item"
               :to="{name: 'categories-slug', params: {slug: category.slug}}"
               :key="category.slug"
-            >{{category.name}}</nuxt-link>
+            >
+              {{category.name}}
+            </nuxt-link>
           </template>
         </template>
       </div>
 
       <div id="nav" class="navbar-menu">
         <div class="navbar-end">
-          <a href="#" class="navbar-item">Sign in</a>
+         <template v-if="!$auth.user"> 
+            <nuxt-link :to="{name: 'auth-login'}" class="navbar-item">Sign in</nuxt-link>
+          </template>
+          <template v-else>
+            <a class="navbar-item" href="">{{$auth.user.name}}</a>
+            <a class="navbar-item" href="">Orders</a>
+            <a class="navbar-item" href="">Cart (0)</a>
+          </template>
         </div>
       </div>
     </div>
